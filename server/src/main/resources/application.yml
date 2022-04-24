@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.20.10:3306/campus
+    username: root
+    password: root
+  redis:
+    cluster:
+      nodes: 192.168.20.10:6379,192.168.20.10:6380,192.168.20.11:6379,192.168.20.11:6380,192.168.20.12:6379,192.168.20.12:6380
+      max-redirects: 10
+    database: 0
+redis:
+  timeout: 10000 #客户端超时时间单位是毫秒 默认是2000
+  maxIdle: 300 #最大空闲数
+  maxTotal: 1000 #控制一个pool可分配多少个jedis实例,用来替换上面的redis.maxActive,如果是jedis 2.4以后用该属性
+  maxWaitMillis: 1000 #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
+  minEvictableIdleTimeMillis: 300000 #连接的最小空闲时间 默认1800000毫秒(30分钟)
+  numTestsPerEvictionRun: 1024 #每次释放连接的最大数目,默认3
+  timeBetweenEvictionRunsMillis: 30000 #逐出扫描的时间间隔(毫秒) 如果为负数,则不运行逐出线程, 默认-1
+  testOnBorrow: true #是否在从池中取出连接前进行检验,如果检验失败,则从池中去除连接并尝试取出另一个
+  testWhileIdle: true #在空闲时检查有效性, 默认false
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml

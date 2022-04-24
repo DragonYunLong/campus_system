@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunlong.mapper.InfoMapper">
+    <insert id="insertInfo" parameterType="com.yunlong.model.Info" useGeneratedKeys="true" keyProperty="id">
+        insert into INFO (ID,NAME,SEX,BIRTH,SCHOOL) values (
+                                                               #{id},
+                                                               #{name},
+                                                               #{sex},
+                                                               #{birth},
+                                                               #{school}
+                                                           )
+    </insert>
+    <select id="selectInfoById" resultType="com.yunlong.model.Info" parameterType="int">
+        select * from INFO where ID = #{infoid}
+    </select>
+    <update id="updateInfo" parameterType="com.yunlong.model.Info" >
+        update INFO set
+                        NAME = #{info.name},
+                        SEX = #{info.sex},
+                        BIRTH = #{info.birth},
+                        SCHOOL = #{info.school}
+        where ID = #{infoid}
+    </update>
+</mapper>

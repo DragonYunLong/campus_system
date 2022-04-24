@@ -1,0 +1,69 @@
+#00A8FF
+user表
+        id  int   --用户id
+        infoid int --用户信息id
+        name  varchar   --用户名字
+        username  varchar   --用户名
+        password  varchar   --密码
+        ident  int   --用户身份  0-学生  1-老师
+        point  int   --信誉分
+        image  text  --头像路径
+        email   varchar  --邮箱
+
+info表  用户信息表
+    id int --标识
+    name varchar   --真实姓名
+    sex  varchar   --性别
+    birth   date  --出生日
+    school   text   --学校
+
+A表  --其他求助类
+    id  int   --标识
+    title text --标题
+    content  text   --内容
+    person  int  --所需人数
+    money  int   --奖励金额
+    status  int   --状态  0-待解决 1-已解决 2-已撤回
+    starttime  date   --发布时间
+    endtime  date   --完成时间
+    point  int  --你的评价  (1-100） 0-未评价
+    access int --验证通过
+
+B表  --二手资源类
+    id  int   --标识
+    itemid int  --物品id
+    type  varchar(20) --具体类别
+    content  text   --内容
+    access int --验证通过
+    status  int   --状态  0-未售卖 1-已售卖 2-已下架
+    starttime  date   --发布时间
+    endtime  date   --完成时间
+    point  int  --你的评价  (1-100） 0-未评价
+    access int --验证通过
+
+C表  --跑腿服务类
+    id int --
+
+
+
+relperson  --帮助人数表
+    id int --标识
+    Aid int  --A类id
+    userid   --帮助人id
+
+item表  --物品表
+    id  int  --物品id
+    image  text  --图片
+    des  text  --物品描述
+    money  int  --物品显示金额
+
+
+跑腿服务：取外卖，取快递，食堂带饭，配送物品
+二手资源：二手书，二手电脑，二手手机，其他
+失物招领：挂失，查询
+
+
+
+
+
+
