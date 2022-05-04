@@ -49,12 +49,20 @@ public class UserController {
         return userService.login(username,password);
     }
 
+    @RequestMapping("/selectPersonByUsername")
+    @ResponseBody
+    public Result selectPersonByUsername(String username){
+
+        return userService.selectPersonByUsername(username);
+    }
+
     @RequestMapping("/selectPerson")
     @ResponseBody
     public Result selectPerson(String sessionid){
 
         return userService.selectPerson(sessionid);
     }
+
     @RequestMapping("/selectPersons")
     @ResponseBody
     public Result selectPersons(){
@@ -67,6 +75,7 @@ public class UserController {
     public Result updateName(String name,String sessionid){
         return userService.updateName(name,sessionid);
     }
+
     @RequestMapping("/updateInfo")
     @ResponseBody
     public Result updateInfo(String realname, String sex, String birth,String school, String sessionid){

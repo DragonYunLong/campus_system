@@ -10,9 +10,10 @@
 <script>
 import MenuTop from "@/components/MenuTop";
 import MyEdit from "@/components/MyEdit";
+import TypeD from "@/components/TypeD";
 export default {
   name: "MyPublish",
-  components: {MyEdit, MenuTop},
+  components: {TypeD, MyEdit, MenuTop},
   mounted:function () {
     const sessionid = this.$cookies.get("sessionid")
     if(sessionid === null){

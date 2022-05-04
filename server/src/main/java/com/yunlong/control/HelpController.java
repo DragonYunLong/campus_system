@@ -5,7 +5,9 @@ import com.yunlong.api.IHelpService;
 import com.yunlong.api.IRedisService;
 import com.yunlong.api.IUserService;
 import com.yunlong.model.TypeA;
+import com.yunlong.model.TypeD;
 import com.yunlong.result.Result;
+import com.yunlong.service.HelpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -64,6 +66,25 @@ public class HelpController {
     public Result getPublishHelp(String sessionid){
         int userid = (int)userService.selectUserId(sessionid).getData();
         return helpService.getPublishHelp(userid);
+    }
+
+    @RequestMapping("/publishD")
+    @ResponseBody
+    public Result publishD(int type,String image,String descript,String sessionid){
+        int userid = (int)userService.selectUserId(sessionid).getData();
+        return helpService.insertTypeD(type,image,descript,userid);
+    }
+
+    @RequestMapping("/getType5Ds")
+    @ResponseBody
+    public Result getType5Ds(){
+        return helpService.selectType5Ds();
+    }
+
+    @RequestMapping("/getTypeDs")
+    @ResponseBody
+    public Result getTypeDs(){
+        return helpService.selectTypeDs();
     }
 
 }

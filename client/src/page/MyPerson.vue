@@ -2,9 +2,9 @@
   <div class="MyPerson">
     <MenuTop style="height: 80px"/>
     <div class="mymiddle">
-      <LeftNav @getStatus="setStatus"/>
+      <LeftNav @getStatus="setStatus" :active="active"/>
       <div class="personBody" >
-        <UserInfo :Status="Status" :header="des"/>
+        <UserInfo :Status="Status" :header="des" />
       </div>
     </div>
   </div>
@@ -24,18 +24,29 @@ export default {
     MenuTop,
     LeftNav
   },
+  data(){
+    return {
+      Status:"",
+      des:"",
+      active:""
+    }
+  },
   methods:{
     setStatus(msg){
       this.Status = msg.status;
       this.des = msg.des;
+      this.active = msg.active;
     }
   },
-  data(){
-    return {
-      Status:1,
-      des:"个人资料"
+  mounted: function () {
+    const p = this.$route.query;
+    if(p.status != undefined){
+      this.Status = p.status;
+      this.des = p.des;
+      this.active = p.active;
     }
   }
+
 }
 </script>
 

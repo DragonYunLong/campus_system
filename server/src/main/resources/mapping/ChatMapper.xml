@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunlong.mapper.ChatMapper">
+    <insert id="insertChat">
+        insert into CHAT (USER1,USER2) values (
+                                               #{user1id},
+                                               #{user2id}
+                                              )
+    </insert>
+    <insert id="insertMessage" parameterType="com.yunlong.model.Message">
+        insert into MESSAGE (CHATID,USERID,MESSAGE,TIME) values (
+                                                                 #{chatid},
+                                                                 #{userid},
+                                                                 #{message},
+                                                                 #{date}
+                                                                )
+    </insert>
+
+    <select id="selectChatUser1" resultType="com.yunlong.model.Chat">
+        select * from CHAT where USER2 = #{Userid}
+    </select>
+    <select id="selectChatUser2" resultType="com.yunlong.model.Chat">
+        select * from CHAT where USER1 = #{Userid}
+    </select>
+    <select id="selectChat" resultType="com.yunlong.model.Chat">
+        select * from CHAT where (USER1 = #{user1id} and USER2 = #{user2id}) and (USER1 = #{user2id} and USER2 = #{user1id})
+    </select>
+    <select id="selectMessage" resultType="com.yunlong.model.Message">
+        select * from MESSAGE where CHATID = #{chatid}
+    </select>
+</mapper>

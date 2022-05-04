@@ -109,7 +109,9 @@
           </el-table-column>
         </el-table>
       </div>
-
+      <div class="middle-body" style="margin-left: 0;height: 700px" id="MyChat" v-if="Status === 6">
+        <ChatLine/>
+      </div>
     </div>
   </div>
 </template>
@@ -125,6 +127,7 @@ export default {
   },
   data(){
     return{
+      userid:"",
       username:"",
       name:"",
       email:"",
@@ -151,6 +154,7 @@ export default {
           this.$cookies.set("sessionid","",1);
           this.$router.push("/")
         }
+        this.userid = person.userid;
         this.username = person.username;
         this.name = person.name;
         this.email = person.email;
@@ -252,6 +256,8 @@ export default {
 <script setup>
 import {Avatar, Check, Edit, Stamp, Star} from "@element-plus/icons-vue";
 import {ref} from "vue";
+import ChatPage from "@/components/ChatPage";
+import ChatLine from "@/components/ChatLine";
  const value = ref('');
 </script>
 <style scoped>
@@ -272,7 +278,8 @@ import {ref} from "vue";
   min-height: 700px;
 }
 .middle-body{
-  margin-left: 20px
+  margin-left: 20px;
+  height: 100%;
 }
 .block{
   margin-bottom: 20px

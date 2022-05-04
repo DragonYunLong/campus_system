@@ -51,11 +51,18 @@ export default {
   },
   data(){
     return{
-      id:document.getElementById("userid").value
+      id:""
     }
   },
   mounted:function () {
-
+    this.$axios.post("UserController/getUserId",this.$qs.stringify({
+      sessionid:this.$cookies.get("sessionid")
+    })).then((res)=>{
+      const data = res.data;
+      if(data.data != null){
+        this.id = data.data;
+      }
+    })
   }
 }
 </script>

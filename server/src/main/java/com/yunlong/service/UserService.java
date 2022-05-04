@@ -62,6 +62,11 @@ public class UserService implements IUserService {
     public Result selectPerson(String sessionid) {
         String username = selectUsername(sessionid);
         if(username == null) return Result.error(412,"sessionid不存在");
+        return selectPersonByUsername(username);
+    }
+
+    @Override
+    public Result selectPersonByUsername(String username) {
         User user = selectUserByUsername(username);
         Info info = selectInfoById(user.getInfoid());
         Person person = new Person();
@@ -69,6 +74,8 @@ public class UserService implements IUserService {
         person.setUsername(username);
         person.setName(user.getName());
         person.setIdent(user.getIdent());
+        person.setImage(user.getImage());
+        person.setUserid(user.getId());
         String name = info.getName();
         if(name != null) name = name.replace(name.substring(1,name.length()),"**");
         person.setRealname(name);
@@ -143,10 +150,13 @@ public class UserService implements IUserService {
             person.setBirth(info.getBirth());
             person.setSchool(info.getSchool());
             person.setSex(info.getSex());
+            person.setUserid(user.getId());
             persons.add(person);
         }
         return Result.success(persons);
     }
+
+
 
     private Info selectInfoById(int id) {
         return infoMapper.selectInfoById(id);

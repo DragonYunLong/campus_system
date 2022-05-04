@@ -3,7 +3,7 @@
 <mapper namespace="com.yunlong.mapper.HelpMapper">
 
     <select id="selectRealperson" resultType="int">
-        select count(ID) from REALPERSON where TYPEID = #{Typeid} and TYPE = 'A'
+        select count(ID) from PICK where TYPEID = #{Typeid} and TYPE = 'A'
     </select>
     <select id="selectUsernameByUserid" resultType="java.lang.String">
         select USERNAME from USER where ID = #{Userid}
@@ -11,6 +11,7 @@
     <select id="selectTypeAs" resultType="com.yunlong.model.TypeA">
         select * from TYPEA
     </select>
+
     <select id="selectPickByType" resultType="com.yunlong.model.Pick">
         select * from PICK where TYPE = #{Type} and TYPEID = #{Typeid}
     </select>
@@ -22,6 +23,9 @@
     </select>
     <select id="selectTypeAByUserId" resultType="com.yunlong.model.TypeA">
         select * from TYPEA where USERID = #{Userid}
+    </select>
+    <select id="selectTypeDs" resultType="com.yunlong.model.TypeD">
+        select * from TYPED
     </select>
     <insert id="insertTypeA" parameterType="com.yunlong.model.TypeA" useGeneratedKeys="true" keyProperty="id">
         insert into TYPEA (USERID,TITLE,CONTENT,PERSON,MONEY,STARTTIME) values (
@@ -39,5 +43,14 @@
                                                       #{Typeid},
                                                       #{Userid}
                                                      )
+    </insert>
+    <insert id="insertTypeD" parameterType="com.yunlong.model.TypeD">
+        insert into TYPED (USERID,TYPE,IMAGE,DES,STARTTIME) values (
+                                                                    #{userid},
+                                                                    #{type},
+                                                                    #{image},
+                                                                    #{des},
+                                                                    #{starttime}
+                                                                   )
     </insert>
 </mapper>

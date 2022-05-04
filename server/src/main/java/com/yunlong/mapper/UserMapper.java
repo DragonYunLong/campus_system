@@ -12,6 +12,7 @@ public interface UserMapper {
     void insertUser(User user);
     User selectUserByUsername(String username);
     User selectUserByEmail(String email);
+    User selectUserById(int id);
     void updateName(String name,String username);
     int selectUserId(@Param("username") String username);
     List<User> selectUsers();

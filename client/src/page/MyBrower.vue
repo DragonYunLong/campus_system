@@ -1,35 +1,6 @@
 <template>
 <div class="MyBrower" style="height: auto">
   <MenuTop @helptype="setType"/>
-  <div class="brower_head">
-    <div>
-      <el-form label-width="100px">
-        <el-form-item label="类型">
-          <el-radio-group v-model="radio1" size="large">
-            <el-radio-button label="求助" />
-            <el-radio-button label="分享" />
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item v-if="radio1 === '求助'"  label="奖励金额">
-          <el-radio-group v-model="radio2" size="large">
-            <el-radio-button label="免费求助" />
-            <el-radio-button label="1-10元" />
-            <el-radio-button label="10-20元" />
-            <el-radio-button label="10元以上" />
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="所需人数" v-if="radio1 === '求助'">
-          <el-radio-group v-model="radio3" size="large">
-            <el-radio-button label="1" />
-            <el-radio-button label="2-4" />
-            <el-radio-button label="5-10" />
-            <el-radio-button label="10人以上" />
-          </el-radio-group>
-        </el-form-item>
-      </el-form>
-
-    </div>
-  </div>
 
   <div id="brower_body" class="brower_body" style="top:200px">
     <div v-bind:key="(value , key)" v-for="(value,key) in help ">
@@ -68,18 +39,16 @@ export default {
       this.radio1 = type
     },
     changeTop(){
-      const height = document.getElementsByClassName("brower_head").item(0).clientHeight
       const  body = document.getElementsByClassName("brower_body").item(0);
-      body.style.top = height+150+"px"
+      body.style.top = 150+"px"
     },
     changeHeigth(){
-      const  height1 = document.getElementsByClassName("brower_body").item(0).clientHeight;
-      const height2 = document.getElementsByClassName("brower_head").item(0).clientHeight;
+      const  height = document.getElementsByClassName("brower_body").item(0).clientHeight;
       const mybrower = document.getElementsByClassName("MyBrower").item(0);
-      mybrower.style.height = height1+height2+200+"px";
+      mybrower.style.height = height+200+"px";
     },
     gethelp(){
-      this.$axios.post("/HelpController/selectHelps"
+      this.$axios.post("/HelpController/selectTypeAs"
       ).then((res)=>{
         const data = res.data.data;
         data.forEach(function (value){
@@ -125,13 +94,6 @@ export default {
 .MyBrower{
   position: relative;
   width: 100%;
-}
-.brower_head{
-  position: absolute;
-  display: flex;
-  top: 80px;
-  padding-left: 300px;
-  justify-content: left;
 }
 .brower_body{
   position: absolute;

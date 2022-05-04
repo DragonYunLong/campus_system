@@ -5,6 +5,7 @@ import java.util.Date;
 public class TypeA {
     private int id;
     private int userid;
+    private String username;
     private String title;
     private String content;
     private int person;
@@ -14,6 +15,7 @@ public class TypeA {
     private Date endtime;
     private int access;
     private int point;
+    private int realperson;
 
     public int getId() {
         return id;
@@ -29,6 +31,14 @@ public class TypeA {
 
     public void setUserid(int userid) {
         this.userid = userid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getTitle() {
@@ -101,5 +111,13 @@ public class TypeA {
 
     public void setPoint(int point) {
         this.point = point;
+    }
+
+    public int getRealperson() {
+        return realperson;
+    }
+
+    public void setRealperson(int realperson) {
+        this.realperson = realperson;
     }
 }

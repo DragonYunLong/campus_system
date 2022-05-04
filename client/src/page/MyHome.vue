@@ -2,27 +2,36 @@
   <MenuTop />
   <div class="Mybody">
     <el-row class="row1">
-    <el-col :span="12" class="col1">
-      <div class="middle">
-        <div @click="$router.push('/brower')">
-          <img src="../assets/search.png" style="width: 200px; height: 200px">
-          <div style="display:flex;justify-content: center;margin-top: 50px;font-size: 30px">浏览</div>
-        </div>
+        <el-col :span="23" class="Home_lost">失物招领</el-col>
+        <el-col :span="1" ><el-link href="">更多></el-link></el-col>
+    </el-row>
+    <el-row style="margin-top: 10px">
+      <el-carousel style="width: 100%;" :interval="4000" type="card" height="250px">
+        <el-carousel-item v-for="item in this.type5Ds" :key="item">
+          <el-card style="width: 100%; height: 100%" :body-style="{ padding: '0px' }">
+            <el-row>
+              <el-col :span="12">
+                <img :src="item.image" style="width: 100%; height: 250px"/>
+              </el-col>
+              <el-col :span="12">
+                <div style="padding-left: 20px;margin-top: 5px">失物招领</div>
+                <div style="padding-left: 20px;margin-top: 20px">{{item.des}}</div>
+                <div style="position: absolute;bottom: 20px;padding-left: 20px">{{item.starttime}}</div>
+              </el-col>
+            </el-row>
 
-      </div>
-    </el-col>
-    <el-col :span="12" class="col2">
-      <div class="middle">
-      <div @click="$router.push('/publish')">
-        <img src="../assets/publish.png" style="width: 200px; height: 200px"/>
-        <div style="display:flex;justify-content: center;margin-top: 50px;font-size: 30px">发起请求</div>
-      </div>
-      </div>
-    </el-col>
-  </el-row>
+          </el-card>
+        </el-carousel-item>
+      </el-carousel>
+    </el-row>
+
+    <el-row style="display: flex;align-items: center;justify-content: center;padding-top: 20px;padding-bottom: 20px;height: 100px">
+
+    </el-row>
+
+    <el-row>
+      二手商店</el-row>
   </div>
-
-
 </template>
 
 <script setup>
@@ -32,54 +41,57 @@
 import MenuTop from "@/components/MenuTop";
 export default {
   name: "MyHome",
-  components: {MenuTop}
+  components: {MenuTop},
+  data(){
+    return{
+      type5Ds:[]
+    }
+  },
+  methods:{
+    getTypeDs(){
+      this.$axios.post("/HelpController/getType5Ds")
+      .then((res)=>{
+        const data = res.data;
+        if(data.data != null){
+          this.type5Ds = data.data;
+        }
+      })
+    }
+  },
+  mounted:function () {
+    this.getTypeDs();
+  }
 }
 
 </script>
 
 <style scoped>
-.middle{
-  display: flex;
-  height: 400px;
-  width: 400px;
-  align-items: center;
-  justify-content: center;
-  transform: scale(1.1); /*原本的图片的大小，图片原来的大小不变*/
-  transition: all 0.6s;
+.el-carousel__item h3 {
+  color: #545c64;
+  font-size: 14px;
+  opacity: 1;
+  line-height: 200px;
+  margin: 0;
+  text-align: center;
 }
-.middle:hover{
-  cursor:pointer; /*经过页面时，鼠标会变成一只手*/
-  transform: scale(1.2);
-}
+.Home_lost{
+  font-size: 25px;
 
+}
 .Mybody{
   position: absolute;
   height: 80%;
-  width: 80%;
-  top: 10%;
+  width: 60%;
+  top: 80px;
   bottom: 10%;
-  left: 10%;
+  left: 20%;
   right: 10%;
 }
 .row1{
-  height: 100%;
+  margin: 0;
+  background-color: aliceblue;
   width: 100%;
 }
-.col1{
-  position:relative;
-  display: flex;
-  height: 100%;
-  align-items: center;
-  width: 50% ;
-  justify-content: center;
-}
-.col2{
-  display: flex;
-  position:relative;
-  height: 100%;
-  width: 50% ;
-  align-items: center;
-  justify-content: center;
-}
+
 
 </style>

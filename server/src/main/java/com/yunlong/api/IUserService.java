@@ -21,4 +21,5 @@ public interface IUserService {
     Result getUser(String sessionid);
     String selectUsername(String sessionid);
     Result selectPersons();
+    Result selectPersonByUsername(String username);
 }

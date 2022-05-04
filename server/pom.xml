@@ -17,6 +17,19 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
+        <!-- websocket -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-core -->
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.7.22</version>
+        </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>

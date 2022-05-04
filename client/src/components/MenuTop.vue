@@ -34,14 +34,23 @@
         <el-menu-item class="index2" index="3" style="font-size: 18px">失物招领</el-menu-item>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item style="font-size: 15px; margin: 5px;" @click="gobrower(1)">挂失</el-dropdown-item>
-            <el-dropdown-item style="font-size: 15px; margin: 5px;" @click="gobrower(2)">查看</el-dropdown-item>
+            <el-dropdown-item style="font-size: 15px; margin: 5px;" @click="$router.push('/publishD')">挂失</el-dropdown-item>
+            <el-dropdown-item style="font-size: 15px; margin: 5px;" @click="$router.push('/browerD')">查看</el-dropdown-item>
            </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+      <el-dropdown class="indexM5">
+        <el-menu-item class="index2" index="3" style="font-size: 18px">其他</el-menu-item>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item style="font-size: 15px; margin: 5px;" @click="$router.push('/brower')">浏览</el-dropdown-item>
+            <el-dropdown-item style="font-size: 15px; margin: 5px;" @click="$router.push('/publish')">发布</el-dropdown-item>
+          </el-dropdown-menu>
         </template>
       </el-dropdown>
         <el-input
               size="large"
-              class="indexM5"
+              class="indexM6"
               placeholder="Search"
               :prefix-icon="Search"
         />
@@ -54,7 +63,7 @@
               <el-dropdown-item style="font-size: 15px; margin: 5px;" v-if="!sessionid" @click="link('/login')">
                 请登录
               </el-dropdown-item>
-              <el-dropdown-item style="font-size: 15px; margin: 5px;" v-if="sessionid" @click="link('/person')">
+              <el-dropdown-item style="font-size: 15px; margin: 5px;" v-if="sessionid" @click="this.$router.push({name:'person',query:{status:1,des:'个人资料',active:1}})">
                 账户管理
               </el-dropdown-item>
               <el-dropdown-item style="font-size: 15px; margin: 5px;" v-if="sessionid" @click="link('')">
@@ -92,18 +101,6 @@ import { Search } from '@element-plus/icons-vue'
       quit(){
         this.$cookies.set("sessionid","",1);
         this.$router.go("/")
-      },
-      gobrower(x){
-
-        if(x === 1){
-          this.$router.push({path:"/brower",query:{helptype:'求助'}})
-          this.$emit("helptype",'求助')
-
-        }else {
-          this.$router.push({path:"/brower",query:{helptype:'分享'}})
-          this.$emit("helptype",'分享')
-        }
-
       },
       getAdminPower(){
         this.$axios.post("UserController/getUser",this.$qs.stringify({
@@ -187,24 +184,30 @@ el-dropdown-item{
 .indexM3{
   position: absolute;
   height: 100%;
-  left: 30%;
+  left: 31%;
   float: left;
 }
 .indexM4{
   position: absolute;
   height: 100%;
-  left: 35%;
+  left: 37%;
   float: left;
+}
+
+.indexM5{
+  position: absolute;
+  width: 20%;
+  left: 44%;
+}
+
+.indexM6{
+  position: absolute;
+  width: 20%;
+  left: 53%;
 }
 .index2{
   height: 100%;
 }
-.indexM5{
-  position: absolute;
-  width: 20%;
-  left: 60%;
-}
-
 .indexR{
   position: absolute;
   right: 10%;

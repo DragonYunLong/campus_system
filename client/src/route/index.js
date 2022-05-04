@@ -7,7 +7,9 @@ import MyPerson from "@/page/MyPerson";
 import MyBrower from "@/page/MyBrower";
 import MyPublish from "@/page/MyPublish";
 import MyAdmin from "@/page/MyAdmin";
-
+import PublishD from "@/page/PublishD";
+import BrowerD from "@/page/BrowerD"
+import MyChat from "@/page/MyChat"
 
 export const router = createRouter({
     history: createWebHistory(),
@@ -25,6 +27,7 @@ export const router = createRouter({
             component: MyRegister
         },
         {
+            name:"person",
             path:"/person",
             component: MyPerson
         },
@@ -39,6 +42,18 @@ export const router = createRouter({
         {
             path:"/admin",
             component: MyAdmin
+        },
+        {
+            path:"/publishD",
+            component: PublishD
+        },
+        {
+            path:"/browerD",
+            component: BrowerD
+        },
+        {
+            path:"/chat",
+            component: MyChat
         }
     ]
 })

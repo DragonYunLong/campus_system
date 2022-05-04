@@ -25,6 +25,9 @@
     <select id="selectUsers" resultType="com.yunlong.model.User">
         select * from USER;
     </select>
+    <select id="selectUserById" parameterType="int" resultType="com.yunlong.model.User">
+        select * from USER where ID = #{id}
+    </select>
     <update id="updateName" parameterType="String">
         update USER set NAME = #{name} where USERNAME = #{username}
     </update>

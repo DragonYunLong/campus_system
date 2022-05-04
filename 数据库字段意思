@@ -57,10 +57,23 @@ item表  --物品表
     des  text  --物品描述
     money  int  --物品显示金额
 
+chat  --聊天记录表
+    id  int
+    users  varchar  --user1id:user2id
 
-跑腿服务：取外卖，取快递，食堂带饭，配送物品
-二手资源：二手书，二手电脑，二手手机，其他
-失物招领：挂失，查询
+message   --聊天信息表
+    id  int
+    chatid   int  --记录id
+    userid   int  --发送者id
+    message  text  --信息内容
+    time  varchar  --发送时间
+    number  int  --发送顺序
+
+
+
+跑腿服务：取外卖，取快递，食堂带饭，配送物品 B
+二手资源：二手书，二手电脑，二手手机，其他 C
+失物招领：挂失，查询 D
 
 
 

@@ -3,6 +3,7 @@ package com.yunlong.mapper;
 
 import com.yunlong.model.Pick;
 import com.yunlong.model.TypeA;
+import com.yunlong.model.TypeD;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +21,8 @@ public interface HelpMapper {
     List<TypeA> selectTypeAByUserId(@Param("Userid") int userid);
     String selectUsernameByUserid(@Param("Userid") int userid);
     List<TypeA> selectTypeAs();
+    void insertTypeD(TypeD typeD);
+    List<TypeD> selectTypeDs();
 
 
 }
